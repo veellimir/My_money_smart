@@ -1,4 +1,6 @@
+from datetime import timedelta
 from pathlib import Path
+
 from . import env_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,7 +19,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework_simplejwt',
     'drf_yasg',
+
+    'app.authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +88,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=env_config.CONFIG__ACCESS_TOKEN_LIFETIME),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=env_config.CONFIG__REFRESH_TOKEN_LIFETIME),
+    'ROTATE_REFRESH_TOKENS': env_config.CONFIG__ROTATE_REFRESH_TOKENS,
+    'BLACKLIST_AFTER_ROTATION': env_config.CONFIG__BLACKLIST_AFTER_ROTATION,
+}
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
