@@ -9,7 +9,7 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="My money smart",
+        title="My money smart 💰",
         default_version='v1',
         description="API documentation for My money smart",
         terms_of_service="https://www.google.com/policies/terms/",
