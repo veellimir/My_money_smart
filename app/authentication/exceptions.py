@@ -14,11 +14,9 @@ EXCEPTION_EMAIL_ALREADY_EXISTS = Response(
     status=status.HTTP_409_CONFLICT,
 )
 
-
 EXCEPTION_PASSWORD_CONFLICT = ValidationError(
     {"Error": "Пароли не совпадают !"},
 )
-
 
 EXCEPTION_ERROR_PASSWORD = ValidationError(
     "Имя пользователя должно состоять только из букв "
