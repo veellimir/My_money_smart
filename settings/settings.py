@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
     'app.authentication.apps.AuthenticationConfig',
     'app.user.apps.UserConfig',
+    'app.finance.apps.FinanceConfig',
 ]
 
 MIDDLEWARE = [
