@@ -14,6 +14,11 @@ EXCEPTION_EMAIL_ALREADY_EXISTS = Response(
     status=status.HTTP_409_CONFLICT,
 )
 
+EXCEPTION_USER_PASSWORD = Response(
+    {"error": "Текущий пароль неверен или новый пароль не совпадает."},
+    status=status.HTTP_400_BAD_REQUEST
+)
+
 EXCEPTION_PASSWORD_CONFLICT = ValidationError(
     {"Error": "Пароли не совпадают !"},
 )

@@ -50,3 +50,17 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
+
+class NewUserPasswordSerializer(serializers.ModelSerializer):
+    old_password: str = serializers.CharField(required=True)
+    new_password: str = serializers.CharField(required=True)
+    confirm_password: str = serializers.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'old_password',
+            'new_password',
+            'confirm_password',
+        )
