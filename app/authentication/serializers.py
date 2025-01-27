@@ -1,8 +1,8 @@
 from typing import Dict
 
 from rest_framework import serializers
-from django.contrib.auth.models import User
 
+from app.user.models import CustomUser
 from .exceptions import EXCEPTION_PASSWORD_CONFLICT
 from .utils import *
 
@@ -28,7 +28,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model = User
+        model = CustomUser
         fields: tuple = (
             'username',
             'password',
@@ -41,10 +41,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             raise EXCEPTION_PASSWORD_CONFLICT
         return attrs
 
-    def create(self, validated_data: Dict[str, str]) -> User:
+    def create(self, validated_data: Dict[str, str]) -> CustomUser:
         validated_data.pop('confirm_password')
 
-        user = User.objects.create_user(
+        user = CustomUser.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password']
@@ -58,7 +58,7 @@ class NewUserPasswordSerializer(serializers.ModelSerializer):
     confirm_password: str = serializers.CharField(required=True)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             'old_password',
             'new_password',

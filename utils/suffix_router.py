@@ -1,4 +1,4 @@
 class SuffixRouter:
     AUTH: str = "authentication/"
     USER: str = "user/"
-    MONEY: str = "money/"
+    FINANCE: str = "finance/"

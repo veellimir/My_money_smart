@@ -1,12 +1,12 @@
-from django.contrib.auth.models import User
-
 from rest_framework.permissions import AllowAny
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 
+from app.user.models import CustomUser
 from .serializers import RegisterUserSerializer, NewUserPasswordSerializer
+
 from .utils import validate_password
 from .exceptions import (
     EXCEPTION_USERNAME_ALREADY_EXISTS,
@@ -23,9 +23,9 @@ class RegisterUserView(generics.CreateAPIView):
         username: str = request.data.get('username')
         email: str = request.data.get('email')
 
-        if User.objects.filter(username=username).exists():
+        if CustomUser.objects.filter(username=username).exists():
             return EXCEPTION_USERNAME_ALREADY_EXISTS
-        if User.objects.filter(email=email).exists():
+        if CustomUser.objects.filter(email=email).exists():
             return EXCEPTION_EMAIL_ALREADY_EXISTS
 
         serializer = self.get_serializer(data=request.data)
@@ -47,7 +47,7 @@ class NewUserPasswordView(generics.UpdateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        user: User = request.user
+        user: CustomUser = request.user
         old_password: str = serializer.validated_data['old_password']
         new_password: str = serializer.validated_data['new_password']
 
