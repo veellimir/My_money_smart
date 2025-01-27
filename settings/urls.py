@@ -30,6 +30,7 @@ urlpatterns = [
 
     path('', include("app.authentication.urls")),
     path('', include("app.user.urls")),
+    path('', include("app.finance.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

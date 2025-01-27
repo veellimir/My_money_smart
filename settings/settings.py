@@ -10,6 +10,15 @@ DEBUG = env_config.CONFIG__DEBUG
 
 ALLOWED_HOSTS = [env_config.CONFIG__ALLOWED_HOSTS]
 
+
+class SuffixRouter:
+    SUFFIX_API: str = "api/v1/"
+
+    AUTH: str = f"{SUFFIX_API}authentication/"
+    USER: str = f"{SUFFIX_API}user/"
+    FINANCE: str = f"{SUFFIX_API}finance/"
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,6 +33,7 @@ INSTALLED_APPS = [
 
     'app.authentication.apps.AuthenticationConfig',
     'app.user.apps.UserConfig',
+    'app.finance.apps.FinanceConfig',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +117,8 @@ SWAGGER_SETTINGS = {
     },
     # 'USE_SESSION_AUTH': True,
 }
+
+AUTH_USER_MODEL = 'user.CustomUser'
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Europe/Berlin'
