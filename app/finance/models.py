@@ -17,7 +17,9 @@ class MyFinance(models.Model):
     category = models.ForeignKey(
         MyCategory,
         on_delete=models.CASCADE,
-        related_name='finances'
+        related_name='finances',
+        blank=True,
+        null=True,
     )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()

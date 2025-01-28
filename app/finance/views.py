@@ -6,7 +6,7 @@ from .serializers import (
     CreateCategorySerializer,
     CategoryListSerializer,
     CreateOperationSerializer,
-    IncomeListSerializer,
+    OperationListSerializer,
 )
 from .exceptions import EXCEPTION_CATEGORY_NOT_FOUND
 from utils.exceptions import EXCEPTION_INVALID_FILTER
@@ -46,12 +46,8 @@ class CreateOperationView(generics.CreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class CreateExpenseView(generics.CreateAPIView):
-    pass
-
-
 class FinanceListView(BasedList):
-    serializer_class = IncomeListSerializer
+    serializer_class = OperationListSerializer
 
     def get_model(self):
         return MyFinance

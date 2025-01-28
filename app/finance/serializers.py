@@ -34,7 +34,7 @@ class CreateOperationSerializer(serializers.ModelSerializer):
         ]
 
 
-class IncomeListSerializer(serializers.ModelSerializer):
+class OperationListSerializer(serializers.ModelSerializer):
     date = serializers.DateField(
         input_formats=['%d.%m.%Y'],
         format='%d.%m.%Y',
