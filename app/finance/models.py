@@ -10,13 +10,17 @@ class MyCategory(models.Model):
 
 class MyFinance(models.Model):
     OPERATIONS = (
-        ("Доход", "Income"),
-        ("Расход", "Expense")
+        ("income", "Income", ),
+        ("expense", "Expense", ),
     )
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='finances')
-    category = models.ForeignKey(MyCategory, on_delete=models.CASCADE, related_name='finances')
+    category = models.ForeignKey(
+        MyCategory,
+        on_delete=models.CASCADE,
+        related_name='finances'
+    )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     transaction_type = models.CharField(
         max_length=20,
         choices=OPERATIONS,

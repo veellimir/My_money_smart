@@ -12,6 +12,7 @@ python-dotenv = "^1.0.1"
 drf-yasg = "^1.21.8"
 djangorestframework-simplejwt = "^5.4.0"
 pillow = "^11.1.0"
+django-filter = "^24.3"
 
 
 [build-system]
