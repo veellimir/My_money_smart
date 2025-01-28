@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import MyCategory
+from .models import MyCategory, MyFinance
 
 
 class CreateCategorySerializer(serializers.ModelSerializer):
@@ -15,4 +15,37 @@ class CategoryListSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'title'
+        ]
+
+
+class CreateOperationSerializer(serializers.ModelSerializer):
+    date = serializers.DateField(
+        input_formats=['%d.%m.%Y'],
+        format='%d.%m.%Y',
+    )
+
+    class Meta:
+        model = MyFinance
+        fields = [
+            'category',
+            'amount',
+            'date',
+            'transaction_type'
+        ]
+
+
+class OperationListSerializer(serializers.ModelSerializer):
+    date = serializers.DateField(
+        input_formats=['%d.%m.%Y'],
+        format='%d.%m.%Y',
+    )
+
+    class Meta:
+        model = MyFinance
+        fields = [
+            'id',
+            'category',
+            'amount',
+            'date',
+            'transaction_type'
         ]
