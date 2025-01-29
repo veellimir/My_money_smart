@@ -123,7 +123,7 @@ SWAGGER_SETTINGS = {
 AUTH_USER_MODEL = 'user.CustomUser'
 
 LANGUAGE_CODE = 'ru-Ru'
-TIME_ZONE = 'Europe/Saint-Petersburg'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 USE_TZ = False
