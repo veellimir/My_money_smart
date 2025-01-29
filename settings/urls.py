@@ -14,9 +14,9 @@ schema_view = get_schema_view(
         title="My money smart 💰",
         default_version='v1',
         description="API documentation for My money smart",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email=""),
-        license=openapi.License(name="BSD License"),
+        terms_of_service="my-politincs",
+        contact=openapi.Contact(email="felitoniHeg@gmail.com"),
+        license=openapi.License(name="BSD License Feltonit"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny, ),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('', include("app.authentication.urls")),
     path('', include("app.user.urls")),
     path('', include("app.finance.urls")),
+    path('', include("app.statistic.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

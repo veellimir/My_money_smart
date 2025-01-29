@@ -13,6 +13,13 @@ from utils.exceptions import EXCEPTION_INVALID_FILTER
 
 
 class CreateCategoryView(generics.CreateAPIView):
+    """
+    Создать категорию по списанию средств
+
+    Параметры запроса:
+    - `наименование категории`: str,
+
+    """
     serializer_class = CreateCategorySerializer
 
     def perform_create(self, serializer):
@@ -20,6 +27,13 @@ class CreateCategoryView(generics.CreateAPIView):
 
 
 class DeleteCategoryView(generics.DestroyAPIView):
+    """
+    Удалить категорию списание средств по id
+
+    Параметры запроса:
+    - `id категории`: int,
+
+    """
     serializer_class = CategoryListSerializer
     queryset = MyCategory.objects.all()
 
@@ -33,6 +47,13 @@ class DeleteCategoryView(generics.DestroyAPIView):
 
 
 class CategoryListView(BasedList):
+    """
+    Получить список категорий списания средств
+
+    Параметры запроса:
+    - `No params`: None,
+
+    """
     serializer_class = CategoryListSerializer
 
     def get_model(self):
@@ -40,6 +61,24 @@ class CategoryListView(BasedList):
 
 
 class CreateOperationView(generics.CreateAPIView):
+    """
+    Создание операции по затратам или зачислениям
+
+    Параметры запроса при списание средств:
+
+    - `id категории`: int,
+    - `сумма списания`: int,
+    - `дата операции`: str(30.01.2025),
+    - `тип операции`: str(expense)
+
+    Параметры запроса при зачислении средств:
+
+    - `id категории`: null,
+    - `сумма зачисления`: int,
+    - `дата операции`: str(30.01.2025),
+    - `тип операции`: str(income),
+
+    """
     serializer_class = CreateOperationSerializer
 
     def perform_create(self, serializer):
@@ -47,6 +86,13 @@ class CreateOperationView(generics.CreateAPIView):
 
 
 class FinanceListView(BasedList):
+    """
+       Получить список операций с фильтрацией
+
+       Параметры запроса:
+       - `фильтр`: all: все | expense: списания | income: зачисления,
+
+       """
     serializer_class = OperationListSerializer
 
     def get_model(self):

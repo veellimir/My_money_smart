@@ -16,6 +16,18 @@ from .exceptions import (
 
 
 class RegisterUserView(generics.CreateAPIView):
+    """
+    Регистрация пользователя
+
+    Параметры запроса:
+    - `имя пользователя`: str,
+    - `пароль`: str,
+    - `повторить пароль`: str,
+    - `адрес электронной почты`: str
+
+    Пример запроса:
+    - `server/api/v1/authentication`
+    """
     serializer_class = RegisterUserSerializer
     permission_classes = [AllowAny]
 
@@ -39,6 +51,17 @@ class RegisterUserView(generics.CreateAPIView):
 
 
 class NewUserPasswordView(generics.UpdateAPIView):
+    """
+        Изменить пароль пользователя
+
+        Параметры запроса:
+        - `старый пароль`: str,
+        - `новый пароль`: str,
+        - `повторить пароль`: str,
+
+        Пример запроса:
+        - `server/api/v1/authentication/change-password`
+        """
     serializer_class = NewUserPasswordSerializer
 
     def update(self, request, *args, **kwargs) -> Response | None:

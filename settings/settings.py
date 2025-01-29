@@ -17,6 +17,7 @@ class SuffixRouter:
     AUTH: str = f"{SUFFIX_API}authentication/"
     USER: str = f"{SUFFIX_API}user/"
     FINANCE: str = f"{SUFFIX_API}finance/"
+    STATISTIC: str = f"{SUFFIX_API}statistic/"
 
 
 INSTALLED_APPS = [
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     'app.authentication.apps.AuthenticationConfig',
     'app.user.apps.UserConfig',
     'app.finance.apps.FinanceConfig',
+    'app.statistic.apps.StatisticConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,8 +122,8 @@ SWAGGER_SETTINGS = {
 
 AUTH_USER_MODEL = 'user.CustomUser'
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Europe/Berlin'
+LANGUAGE_CODE = 'ru-Ru'
+TIME_ZONE = 'Europe/Saint-Petersburg'
 
 USE_I18N = True
 USE_TZ = False
