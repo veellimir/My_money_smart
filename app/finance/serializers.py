@@ -1,21 +1,6 @@
 from rest_framework import serializers
 
-from .models import MyCategory, MyFinance
-
-
-class CreateCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MyCategory
-        fields = ['title']
-
-
-class CategoryListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MyCategory
-        fields = [
-            'id',
-            'title'
-        ]
+from .models import MyFinance
 
 
 class CreateOperationSerializer(serializers.ModelSerializer):
@@ -27,7 +12,6 @@ class CreateOperationSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyFinance
         fields = [
-            'category',
             'amount',
             'date',
             'transaction_type'
@@ -44,7 +28,6 @@ class OperationListSerializer(serializers.ModelSerializer):
         model = MyFinance
         fields = [
             'id',
-            'category',
             'amount',
             'date',
             'transaction_type'
