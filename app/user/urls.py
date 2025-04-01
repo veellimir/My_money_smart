@@ -13,7 +13,6 @@ urlpatterns: List[path] = [
     path(f'{SuffixRouter.USER}password-reset', views.PasswordResetRequestView.as_view(), name='password_reset_request'),
     path(f'{SuffixRouter.USER}password-reset-confirm/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
-    path(f'{SuffixRouter.USER}final_password/', views.final_password, name='final_password'),
-
-    path(f'{SuffixRouter.USER}politics/', views.politics_page, name='politics'),
+    path('final_password/', views.final_password, name='final_password'),
+    path('politics/', views.politics_page, name='politics'),
 ]

@@ -154,20 +154,22 @@ class PasswordResetConfirmView(APIView):
     def post(self, request, uidb64, token):
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
-            user = get_user_model().objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
-            return Response({"detail": "Пользователь не найден."}, status=status.HTTP_400_BAD_REQUEST)
+            user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            return EXCEPTION_USER_NOT_FOUND
 
         if not default_token_generator.check_token(user, token):
-            return Response({"detail": "Неверный токен."}, status=status.HTTP_400_BAD_REQUEST)
-        new_password = request.data.get('new_password')
+            return EXCEPTION_USER_NOT_FOUND
 
-        if new_password:
-            user.set_password(new_password)
+        serializer = PasswordResetConfirmSerializer(data=request.data)
+        if serializer.is_valid():
+            user.set_password(serializer.validated_data['new_password'])
             user.save()
-            return Response({"detail": "Пароль успешно изменен."}, status=status.HTTP_200_OK)
-
-        return Response({"detail": "Новый пароль не был передан."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"message": "Пароль был успешно изменен."},
+                status=200
+            )
+        return Response(serializer.errors, status=400)
 
 
 def final_password(request):
