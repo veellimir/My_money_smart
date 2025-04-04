@@ -6,7 +6,6 @@ from .serializers import (
     CreateOperationSerializer,
     OperationListSerializer,
 )
-from .exceptions import EXCEPTION_CATEGORY_NOT_FOUND
 from utils.exceptions import EXCEPTION_INVALID_FILTER
 
 
@@ -60,3 +59,10 @@ class FinanceListView(BasedList):
             else:
                 raise EXCEPTION_INVALID_FILTER
         return queryset
+
+
+class DeleteOperationView(generics.DestroyAPIView):
+    serializer_class = OperationListSerializer
+
+    def get_queryset(self):
+        return MyFinance.objects.filter(user=self.request.user)
